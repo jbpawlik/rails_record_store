@@ -23,6 +23,19 @@ ActiveRecord::Schema.define(version: 2021_08_04_005707) do
     t.string "genre"
   end
 
+  create_table "albums_artists", id: false, force: :cascade do |t|
+    t.bigint "artist_id"
+    t.bigint "album_id"
+    t.index ["album_id"], name: "index_albums_artists_on_album_id"
+    t.index ["artist_id"], name: "index_albums_artists_on_artist_id"
+  end
+
+  create_table "artists", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "songs", force: :cascade do |t|
     t.string "name"
     t.string "lyrics"
